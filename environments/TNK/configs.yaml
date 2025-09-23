@@ -1,0 +1,7 @@
+---
+name: TNK
+description: "Constrainted test function TNK. See Table V in https://www.iitk.ac.in/kangal/Deb_NSGA-II.pdf"
+version: "0.1"
+dependencies:
+  - numpy
+  - badger-opt
