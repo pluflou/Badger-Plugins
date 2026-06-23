@@ -1,0 +1,75 @@
+name: FEL IN20 solenoid + quads
+description: Maximize FEL pulse energy by tuning the IN20 injector solenoid (SOLN:IN20:121)
+  and the tunable IN20 quadrupoles. Bayesian optimization (expected improvement).
+environment:
+  name: lcls_fel_surrogate
+  params: {}
+generator:
+  name: expected_improvement
+  turbo_controller: null
+  numerical_optimizer:
+    name: LBFGS
+    n_restarts: 20
+    max_iter: 2000
+    max_time: 5.0
+  max_travel_distances: null
+vocs:
+  constants: {}
+  constraints: {}
+  objectives:
+    GDET:FEE1:241:ENRC: MAXIMIZE
+  observables: []
+  variables:
+    SOLN:IN20:121:BCTRL:
+    - 0.4750012755393982
+    - 0.4898073077201843
+    QUAD:IN20:121:BCTRL:
+    - -0.012858917005360126
+    - 0.014996109530329704
+    QUAD:IN20:122:BCTRL:
+    - -0.011106831952929497
+    - 0.014521649107336998
+    QUAD:IN20:361:BCTRL:
+    - -4.05964994430542
+    - -3.170670747756958
+    QUAD:IN20:371:BCTRL:
+    - 2.470209836959839
+    - 3.0689961910247803
+    QUAD:IN20:425:BCTRL:
+    - -3.1995935440063477
+    - -0.5901550054550171
+    QUAD:IN20:441:BCTRL:
+    - -0.538829505443573
+    - 1.268821358680725
+    QUAD:IN20:511:BCTRL:
+    - 0.6183972358703613
+    - 4.204927444458008
+    QUAD:IN20:525:BCTRL:
+    - -3.698307514190674
+    - -0.8770037889480591
+    QUAD:IN20:651:BCTRL:
+    - -5.921041488647461
+    - -5.817676544189453
+    QUAD:IN20:731:BCTRL:
+    - 10.724224090576172
+    - 10.911758422851562
+    QUAD:IN20:771:BCTRL:
+    - -3.473116636276245
+    - -3.41040301322937
+vrange_limit_options: {}
+relative_to_current: false
+initial_point_actions:
+- type: add_curr
+- config:
+    fraction: 0.1
+    method: 0
+    n_points: 3
+  type: add_rand
+critical_constraint_names: []
+additional_variables: []
+formulas: {}
+constraint_formulas: {}
+observable_formulas: {}
+vrange_hard_limit: {}
+badger_version: ''
+xopt_version: ''

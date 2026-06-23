@@ -1,0 +1,81 @@
+name: FEL LI21 quads
+description: Maximize FEL pulse energy by tuning all tunable LI21 linac quadrupoles. Bayesian
+  optimization (expected improvement).
+environment:
+  name: lcls_fel_surrogate
+  params: {}
+generator:
+  name: expected_improvement
+  turbo_controller: null
+  numerical_optimizer:
+    name: LBFGS
+    n_restarts: 20
+    max_iter: 2000
+    max_time: 5.0
+  max_travel_distances: null
+vocs:
+  constants: {}
+  constraints: {}
+  objectives:
+    GDET:FEE1:241:ENRC: MAXIMIZE
+  observables: []
+  variables:
+    QUAD:LI21:201:BCTRL:
+    - -8.62252426147461
+    - -2.9184024333953857
+    QUAD:LI21:211:BCTRL:
+    - 3.2707419395446777
+    - 7.083395004272461
+    QUAD:LI21:221:BCTRL:
+    - -0.7424343228340149
+    - 0.2432546466588974
+    QUAD:LI21:251:BCTRL:
+    - -0.7296757698059082
+    - 0.25308719277381897
+    QUAD:LI21:271:BCTRL:
+    - -7.801762104034424
+    - -4.287487983703613
+    QUAD:LI21:278:BCTRL:
+    - 5.390344142913818
+    - 10.096536636352539
+    QUAD:LI21:315:BCTRL:
+    - 5.388442516326904
+    - 5.799100399017334
+    QUAD:LI21:335:BCTRL:
+    - -5.428651332855225
+    - -5.321958065032959
+    QUAD:LI21:401:BCTRL:
+    - 0.807345986366272
+    - 1.2974697351455688
+    QUAD:LI21:501:BCTRL:
+    - -1.6181596517562866
+    - -0.9817104935646057
+    QUAD:LI21:601:BCTRL:
+    - 1.2652913331985474
+    - 1.8709330558776855
+    QUAD:LI21:701:BCTRL:
+    - -2.3438212871551514
+    - -1.5526777505874634
+    QUAD:LI21:801:BCTRL:
+    - 1.8732759952545166
+    - 2.8998312950134277
+    QUAD:LI21:901:BCTRL:
+    - -3.4157297611236572
+    - -2.152127742767334
+vrange_limit_options: {}
+relative_to_current: false
+initial_point_actions:
+- type: add_curr
+- config:
+    fraction: 0.1
+    method: 0
+    n_points: 3
+  type: add_rand
+critical_constraint_names: []
+additional_variables: []
+formulas: {}
+constraint_formulas: {}
+observable_formulas: {}
+vrange_hard_limit: {}
+badger_version: ''
+xopt_version: ''
