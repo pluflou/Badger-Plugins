@@ -56,7 +56,67 @@ vocs:
     QUAD:IN20:771:BCTRL:
     - -3.473116636276245
     - -3.41040301322937
-vrange_limit_options: {}
+vrange_limit_options:
+  SOLN:IN20:121:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:121:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:122:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:361:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:371:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:425:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:441:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:511:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:525:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:651:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:731:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:IN20:771:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr

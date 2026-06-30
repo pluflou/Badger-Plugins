@@ -32,7 +32,27 @@ vocs:
     QUAD:LI21:271:BCTRL:
     - -7.801762104034424
     - -4.287487983703613
-vrange_limit_options: {}
+vrange_limit_options:
+  QUAD:LI21:211:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI21:221:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI21:251:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI21:271:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr

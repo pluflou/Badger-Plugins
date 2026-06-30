@@ -44,7 +44,47 @@ vocs:
     QUAD:LI22:901:BCTRL:
     - -7.293863296508789
     - -3.9421448707580566
-vrange_limit_options: {}
+vrange_limit_options:
+  QUAD:LI22:201:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:301:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:401:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:501:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:601:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:701:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:801:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:901:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr

@@ -45,7 +45,47 @@ vocs:
     USEG:UNDH:2250:GapAct:
     - 7.302999973297119
     - 7.526899814605713
-vrange_limit_options: {}
+vrange_limit_options:
+  USEG:UNDH:1450:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:1550:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:1650:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:1750:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:1850:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:1950:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:2050:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  USEG:UNDH:2250:GapAct:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr

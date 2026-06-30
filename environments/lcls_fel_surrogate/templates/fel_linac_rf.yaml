@@ -42,7 +42,42 @@ vocs:
     ACCL:LI22:1:PDES:
     - -44.52250289916992
     - -26.240581512451172
-vrange_limit_options: {}
+vrange_limit_options:
+  ACCL:LI21:1:L1S_S_AV:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI21:180:L1X_S_AV:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI22:1:ADES:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI25:1:ADES:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI21:1:L1S_S_PV:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI21:180:L1X_S_PV:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI22:1:PDES:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr

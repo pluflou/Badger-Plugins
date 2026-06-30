@@ -19,7 +19,17 @@ vocs:
     ACCL:LI25:1:ADES:
     - 5606.73388671875
     - 8023.0810546875
-vrange_limit_options: {}
+vrange_limit_options:
+  ACCL:LI22:1:ADES:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  ACCL:LI25:1:ADES:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
 relative_to_current: false
 initial_point_actions:
 - type: add_curr
