@@ -1,0 +1,103 @@
+name: FEL LI22 quads
+description: Maximize FEL pulse energy by tuning the LI22 linac quadrupoles. Bayesian
+  optimization (expected improvement).
+environment:
+  name: lcls_fel_surrogate
+  params: {}
+generator:
+  name: expected_improvement
+  turbo_controller: null
+  numerical_optimizer:
+    name: LBFGS
+    n_restarts: 20
+    max_iter: 2000
+    max_time: 5.0
+  max_travel_distances: null
+vocs:
+  constants: {}
+  constraints: {}
+  objectives:
+    GDET:FEE1:241:ENRC: MAXIMIZE
+  observables: []
+  variables:
+    QUAD:LI22:201:BCTRL:
+    - 2.0494790077209473
+    - 3.560842275619507
+    QUAD:LI22:301:BCTRL:
+    - -4.522728443145752
+    - -2.434352159500122
+    QUAD:LI22:401:BCTRL:
+    - 2.675431728363037
+    - 4.936089992523193
+    QUAD:LI22:501:BCTRL:
+    - -5.76203727722168
+    - -3.146383047103882
+    QUAD:LI22:601:BCTRL:
+    - 3.7713868618011475
+    - 6.909282684326172
+    QUAD:LI22:701:BCTRL:
+    - -7.327755451202393
+    - -3.9155988693237305
+    QUAD:LI22:801:BCTRL:
+    - 4.332723140716553
+    - 8.138812065124512
+    QUAD:LI22:901:BCTRL:
+    - -7.293863296508789
+    - -3.9421448707580566
+vrange_limit_options:
+  QUAD:LI22:201:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:301:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:401:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:501:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:601:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:701:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:801:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI22:901:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+relative_to_current: false
+initial_point_actions:
+- type: add_curr
+- config:
+    fraction: 0.1
+    method: 0
+    n_points: 3
+  type: add_rand
+critical_constraint_names: []
+additional_variables: []
+formulas: {}
+constraint_formulas: {}
+observable_formulas: {}
+vrange_hard_limit: {}
+badger_version: ''
+xopt_version: ''

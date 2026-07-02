@@ -1,0 +1,143 @@
+name: FEL LI24 quads
+description: Maximize FEL pulse energy by tuning all tunable LI24 linac quadrupoles. Bayesian
+  optimization (expected improvement).
+environment:
+  name: lcls_fel_surrogate
+  params: {}
+generator:
+  name: expected_improvement
+  turbo_controller: null
+  numerical_optimizer:
+    name: LBFGS
+    n_restarts: 20
+    max_iter: 2000
+    max_time: 5.0
+  max_travel_distances: null
+vocs:
+  constants: {}
+  constraints: {}
+  objectives:
+    GDET:FEE1:241:ENRC: MAXIMIZE
+  observables: []
+  variables:
+    QUAD:LI24:201:BCTRL:
+    - 6.811530590057373
+    - 11.965710639953613
+    QUAD:LI24:301:BCTRL:
+    - -13.151202201843262
+    - -7.702062129974365
+    QUAD:LI24:401:BCTRL:
+    - 9.044830322265625
+    - 15.84463119506836
+    QUAD:LI24:501:BCTRL:
+    - -14.76771068572998
+    - -9.022802352905273
+    QUAD:LI24:601:BCTRL:
+    - 6.159085750579834
+    - 9.750685691833496
+    QUAD:LI24:701:BCTRL:
+    - -20.955387115478516
+    - -13.969274520874023
+    QUAD:LI24:702:BCTRL:
+    - -20.955387115478516
+    - -13.969274520874023
+    QUAD:LI24:713:BCTRL:
+    - 23.610397338867188
+    - 35.42658615112305
+    QUAD:LI24:740:BCTRL:
+    - -0.9996497631072998
+    - 1.100592851638794
+    QUAD:LI24:860:BCTRL:
+    - -1.2825469970703125
+    - 2.1002092361450195
+    QUAD:LI24:892:BCTRL:
+    - -40.78890609741211
+    - -27.187170028686523
+    QUAD:LI24:901:BCTRL:
+    - 11.556938171386719
+    - 17.337291717529297
+    QUAD:LI24:902:BCTRL:
+    - 11.556938171386719
+    - 17.337291717529297
+vrange_limit_options:
+  QUAD:LI24:201:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:301:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:401:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:501:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:601:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:701:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:702:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:713:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:740:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:860:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:892:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:901:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+  QUAD:LI24:902:BCTRL:
+    limit_option_idx: 1
+    ratio_curr: 0.1
+    ratio_full: 1.0
+    delta: 0.1
+relative_to_current: false
+initial_point_actions:
+- type: add_curr
+- config:
+    fraction: 0.1
+    method: 0
+    n_points: 3
+  type: add_rand
+critical_constraint_names: []
+additional_variables: []
+formulas: {}
+constraint_formulas: {}
+observable_formulas: {}
+vrange_hard_limit: {}
+badger_version: ''
+xopt_version: ''
