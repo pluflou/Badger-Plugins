@@ -2,22 +2,25 @@ import random
 import time
 from typing import Dict
 import warnings
+import logging
 
 import numpy as np
 from badger import interface
 from badger.interface import InterfaceInfo
+from badger.errors import BadgerInterfaceChannelError
 
 import epics
 
 epics.ca.DEFAULT_CONNECTION_TIMEOUT = 0.1
 
+logger = logging.getLogger(__name__)
 
 class Interface(interface.Interface):
     name = "epics"
     testing: bool = False
 
-    # Private variables
-    _pvs: Dict = {}
+    # list of pv names
+    _pv_names: list[str] = []
 
     @interface.log
     def reset_interface(self):
@@ -26,31 +29,35 @@ class Interface(interface.Interface):
     @interface.log
     def get_info(self, channel_names: list[str]) -> InterfaceInfo:
         result: InterfaceInfo = {
-            'vars': {},
-            'interface': {
-                'name': self.name,
-                'num_registered_pvs': len(self._pvs)
-            }
+            "vars": {},
+            "interface": {"name": self.name, "num_registered_pvs": len(self._pv_names)},
         }
 
         for channel in channel_names:
-            pv = self._pvs.get(channel)
-            if pv is None:
-                pv = epics.get_pv(channel)
-                self._pvs[channel] = pv
+            if channel not in self._pv_names:
+                self._pv_names.append(channel)
+
+            pv = epics.get_pv(channel)
 
             pv.wait_for_connection(1)
 
-            result['vars'][channel] = {
-                'name': channel,
-                'protocol': 'CA',
-                'connected': str(pv.connected),
-                'status': pv.char_status,
-                'host': pv.host,
-                'access': pv.access,
-                'type': pv.type,
+            result["vars"][channel] = {
+                "name": channel,
+                "protocol": "CA",
+                "connected": str(pv.connected),
+                "status": pv.char_status,
+                "host": pv.host,
+                "access": pv.access,
+                "type": pv.type,
             }
         return result
+
+    @interface.log
+    def get_bounds(self, channel_names):
+        channels = [epics.get_pv(channel) for channel in channel_names]
+        low_bounds = [pv.lower_ctrl_limit for pv in channels]
+        high_bounds = [pv.upper_ctrl_limit for pv in channels]
+        return (low_bounds, high_bounds)
 
     @interface.log
     def get_values(self, channel_names, as_string: bool = False):
@@ -65,23 +72,27 @@ class Interface(interface.Interface):
             return channel_outputs
 
         for channel in channel_names:
-            try:
-                pv = self._pvs[channel]
-            except KeyError:
-                pv = epics.get_pv(channel)
-                self._pvs[channel] = pv
+            if channel not in self._pv_names:
+                self._pv_names.append(channel)
+
+            pv = epics.get_pv(channel)
 
             if not pv.wait_for_connection(1):
-                # TODO: consider throwing an exception here
-                channel_outputs[channel] = None
-                continue
+                raise BadgerInterfaceChannelError(
+                    f"failed to connect to epics PV: {channel}"
+                )
 
             count_down = 2  # second
             flag = True
             while count_down > 0:
+                logger.debug(f"Trying to get value for PV {channel} (remaining time: {count_down:.1f}s)")
                 value = pv.get(as_string=as_string, use_monitor=False, timeout=2)
                 if value is None:
-                    raise Exception(f"CAGET failed for PV {channel}")
+                    # Transient CA timeouts can occur; keep retrying until count_down expires.
+                    logger.debug(f"CAGET returned None for PV {channel}, retrying")
+                    time.sleep(0.1)
+                    count_down -= 0.1
+                    continue
 
                 if type(value) is str:
                     channel_outputs[channel] = value
@@ -108,6 +119,8 @@ class Interface(interface.Interface):
                 warnings.warn(f"PV {channel} returned no valid value!")
                 channel_outputs[channel] = np.nan
 
+            logger.debug(f"Got value for PV {channel}: {channel_outputs[channel]}")
+
         return channel_outputs
 
     @interface.log
@@ -121,16 +134,15 @@ class Interface(interface.Interface):
             return channel_outputs
 
         for channel, value in channel_inputs.items():
-            try:
-                pv = self._pvs[channel]
-            except KeyError:
-                pv = epics.get_pv(channel)
-                self._pvs[channel] = pv
+            logger.debug(f"Setting PV {channel} to value {value}")
+            if channel not in self._pv_names:
+                self._pv_names.append(channel)
+            pv = epics.get_pv(channel)
 
             if not pv.wait_for_connection(1):
-                # TODO: consider throwing an exception here
-                channel_outputs[channel] = None
-                continue
+                raise BadgerInterfaceChannelError(
+                    f"failed to connect to epics PV: {channel}"
+                )
 
             # Wait for no longer 5s
             pv.put(value, wait=True, timeout=3)
@@ -163,5 +175,7 @@ class Interface(interface.Interface):
                     f"PV {channel} (current: {channel_outputs[channel]}) "
                     + f"cannot reach expected value ({value})!"
                 )
+            
+            logger.debug(f"Successfully set PV {channel} to value {value}")
 
         return channel_outputs
