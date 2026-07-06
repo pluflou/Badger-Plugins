@@ -15,8 +15,5 @@ _model = load_model()
 class Environment(environment.Environment):
     name = "lcls_fel_surrogate"
 
-    variables = {
-        var.name: [float(var.value_range[0]), float(var.value_range[1])]
-        for var in _model.input_variables
-    }
-    observables = list(_model.output_names)
+    variables = {}
+    observables = []
